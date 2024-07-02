@@ -1,0 +1,29 @@
+CREATE DATABASE music;
+USE music;
+
+CREATE TABLE genre (
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR (35) NOT NULL,
+description VARCHAR(200)
+);
+
+CREATE TABLE album(
+id INT AUTO_INCREMENT PRIMARY KEY,
+title VARCHAR(80) NOT NULL,
+release_year YEAR NOT NULL,
+genre_id INT,
+FOREIGN KEY (genre_id) REFERENCES genre(id)
+);
+
+CREATE TABLE artist(
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30),
+album_id INT,
+FOREIGN KEY (album_id) REFERENCES album(id)
+);
+
+ALTER TABLE album
+ADD (duration TIMESTAMP);
+
+ALTER TABLE album
+ADD (artist_id INT,FOREIGN KEY (artist_id) REFERENCES artist(id));
